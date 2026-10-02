@@ -1,0 +1,312 @@
+/* ==========================================================================
+   1. Universal Document Parameters & Form Reset
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   2. Semantic Layout Wrappers
+   ========================================================================== */
+header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.25rem;
+  letter-spacing: -0.05em;
+}
+
+header p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+main {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   3. Component Architecture (Section White Cards)
+   ========================================================================== */
+.app-card {
+  background-color: #ffffff;
+  padding: 1.75rem;
+  margin-bottom: 1.75rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.app-card h2 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+  color: #0f172a;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   4. Flexbox Form Integration
+   ========================================================================== */
+#note-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.375rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+#note-input,
+#note-category,
+#search-input {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #0f172a;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#note-input:focus,
+#note-category:focus,
+#search-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ==========================================================================
+   5. Interactive Trigger Controls (Buttons)
+   ========================================================================== */
+button {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#submit-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+#submit-btn:hover {
+  background-color: #1d4ed8;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   6. Live Messaging Indicators & Search Bar Styling
+   ========================================================================== */
+#error-message {
+  margin: 1rem 0 0 0;
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-height: 1.25rem;
+}
+
+.search-utilities {
+  margin-bottom: 1.25rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.status-summary-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#note-count {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+#clear-all-btn {
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+#clear-all-btn:hover {
+  background-color: #b91c1c;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   7. Dynamically Rendered Card Modules
+   ========================================================================== */
+#notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.note-item {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.note-content-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.note-text-display {
+  margin: 0;
+  font-size: 1rem;
+  word-break: break-word;
+  color: #0f172a;
+}
+
+.note-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.badge {
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.675rem;
+  letter-spacing: 0.05em;
+}
+
+/* Category-Specific Visual Identification Accents */
+.category-personal { border-left: 5px solid #0d9488; }
+.category-personal .badge { background-color: #ccfbf1; color: #0d9488; }
+
+.category-work { border-left: 5px solid #991b1b; }
+.category-work .badge { background-color: #fee2e2; color: #991b1b; }
+
+.category-study { border-left: 5px solid #2563eb; }
+.category-study .badge { background-color: #dbeafe; color: #2563eb; }
+
+.delete-btn {
+  background-color: #f1f5f9;
+  color: #64748b;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+}
+
+.delete-btn:hover {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.no-match-message {
+  text-align: center;
+  color: #64748b;
+  padding: 2rem 1rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   8. Responsive Formatting Breakdown Grid Media Queries
+   ========================================================================== */
+@media (max-width: 600px) {
+  #note-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  #submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .note-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .delete-btn {
+    align-self: flex-end;
+    margin-top: 0.5rem;
+  }
+}
